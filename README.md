@@ -1,4 +1,3 @@
-# UserAssetLib
 PHP library to use UserAsset
 
 Usage:
@@ -12,12 +11,10 @@ Usage:
 	];
 	
 	$ua = new phamloc\UserAsset\UserAsset($config);
-	$result = $ua->putObject([
-		'namespace'		=> 'upload',
-		'object_name'	=> '2.jpg',
-	//	'file'			=> '40.jpg',
-		'url'			=> "https://taigame.org/ss",
-		'optimize'		=> true
-	]);
-	
+	$result = $ua->putObject('upload', '2.jpg', "http://www.twinfinite.net/wp-content/uploads/2014/08/AC-feature.jpg", true);
+	print_r($result);
+
+	echo $ua->getUrl(['upload', '2.jpg']);
+
+	$result = $ua->deleteObject('upload', '2.jpg');
 	print_r($result);
