@@ -1,0 +1,9 @@
+{
+    "name": "phamloc/UserAssetLib",
+    "description": "PHP library to use UserAsset",
+	"autoload": {
+        "psr-4": {
+            "phamloc\\UserAsset\\": "src"
+        }
+    }
+}
