@@ -69,9 +69,8 @@ class UserAsset
 			$uri = "{$uri[0]}/{$uri[1]}";
 		}
 		
-		$secret = $this->getHashKey($this->auth['name'], $this->auth['password'], $uri, $transforms);
 		$params = [
-			'k'		=> $secret,
+			'k'		=> $this->getHashKey($this->auth['name'], $this->auth['password'], $uri, $transforms),
 			'uri'	=> $uri,
 			'w'		=> empty($transforms['width']) ? null : $transforms['width'],
 			'h'		=> empty($transforms['height']) ? null : $transforms['height'],
@@ -134,7 +133,7 @@ class UserAsset
 		curl_close($curl);
 		
 		if ( $error_code !== CURLE_OK ) {
-			throw new \RuntimeException(sprintf('cURL returned with the following error code: "%s"', $error_code));
+			throw new \RuntimeException("cURL returned with the following error code: $error_code\nCurl info:\n" . json_encode(curl_getinfo($curl)) );
 		}
 		
 		if (empty($result)) {
